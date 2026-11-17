@@ -1,0 +1,1738 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A Magia da Transformação | Coleção Oficial de E-books - Everton Bispo de Souza</title>
+    <meta name="description" content="Transforme seu corpo e mente com a coleção oficial de e-books de Everton Bispo de Souza: Emagrecimento, Nutrição, Treino em Casa, Receitas Fitness, Ansiedade e Tabagismo.">
+    
+    <!-- Google Fonts: Inter e Plus Jakarta Sans -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome para ícones modernos -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        display: ['Plus Jakarta Sans', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            dark: '#0A1612',
+                            moss: '#132A22',
+                            card: '#18342A',
+                            emerald: '#10B981',
+                            lime: '#84CC16',
+                            gold: '#D4AF37',
+                            goldLight: '#F3E5AB',
+                        }
+                    },
+                    boxShadow: {
+                        'gold': '0 10px 30px -5px rgba(212, 175, 55, 0.25)',
+                        'emerald': '0 10px 30px -5px rgba(16, 185, 129, 0.3)',
+                        'book': '-12px 15px 25px rgba(0, 0, 0, 0.6)',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Estilos customizados para Mockups 3D dos E-books e animações */
+        body {
+            background-color: #0A1612;
+            color: #F8FAFC;
+            overflow-x: hidden;
+        }
+
+        .gold-gradient-text {
+            background: linear-gradient(135deg, #F3E5AB 0%, #D4AF37 50%, #AA8215 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .gold-bg-gradient {
+            background: linear-gradient(135deg, #E5C158 0%, #D4AF37 50%, #B38B1D 100%);
+        }
+
+        /* Efeito 3D realista para capas de e-books */
+        .book-3d-wrapper {
+            perspective: 1000px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 1rem 0;
+        }
+
+        .book-3d {
+            width: 175px;
+            height: 245px;
+            position: relative;
+            transform-style: preserve-3d;
+            transform: rotateY(-22deg) rotateX(4deg);
+            transition: transform 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+            border-radius: 4px 10px 10px 4px;
+            box-shadow: -12px 15px 28px rgba(0, 0, 0, 0.7);
+        }
+
+        .book-card:hover .book-3d {
+            transform: rotateY(-8deg) rotateX(2deg) translateY(-6px) scale(1.03);
+        }
+
+        /* Lombada do livro */
+        .book-3d::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 24px;
+            height: 100%;
+            transform-origin: left;
+            transform: rotateY(90deg) translateX(-24px);
+            background: linear-gradient(90deg, rgba(0,0,0,0.6) 0%, rgba(255,255,255,0.15) 50%, rgba(0,0,0,0.5) 100%);
+            border-radius: 3px 0 0 3px;
+        }
+
+        /* Páginas laterais */
+        .book-3d::after {
+            content: '';
+            position: absolute;
+            top: 3px;
+            right: -8px;
+            width: 8px;
+            height: calc(100% - 6px);
+            background: repeating-linear-gradient(
+                90deg,
+                #e2e8f0 0px,
+                #cbd5e1 1px,
+                #f8fafc 2px
+            );
+            transform: rotateY(70deg);
+            transform-origin: left;
+            border-radius: 0 2px 2px 0;
+        }
+
+        /* Brilho de capa dura */
+        .book-sheen {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(115deg, rgba(255,255,255,0.22) 0%, rgba(255,255,255,0.03) 35%, rgba(0,0,0,0.25) 100%);
+            border-radius: 4px 10px 10px 4px;
+            pointer-events: none;
+        }
+
+        /* Vinco da capa */
+        .book-crease {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 10px;
+            width: 3px;
+            background: linear-gradient(90deg, rgba(0,0,0,0.45), rgba(255,255,255,0.2), rgba(0,0,0,0.3));
+            pointer-events: none;
+        }
+
+        /* Animações suaves de entrada */
+        .reveal {
+            opacity: 0;
+            transform: translateY(24px);
+            transition: all 0.7s ease-out;
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Pulso botão WhatsApp */
+        @keyframes pulse-ring {
+            0% { transform: scale(0.95); opacity: 0.7; }
+            70% { transform: scale(1.35); opacity: 0; }
+            100% { transform: scale(1.35); opacity: 0; }
+        }
+        .whatsapp-pulse::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: 9999px;
+            background-color: #25D366;
+            animation: pulse-ring 2s infinite;
+            z-index: -1;
+        }
+    </style>
+</head>
+<body class="antialiased selection:bg-brand-gold selection:text-brand-dark">
+
+    <!-- ========================================== -->
+    <!-- BARRA DE AVISO SUPERIOR (URGÊNCIA/GARANTIA)-->
+    <!-- ========================================== -->
+    <div class="bg-gradient-to-r from-brand-moss via-emerald-900 to-brand-moss border-b border-brand-gold/30 py-2 px-4 text-center text-xs sm:text-sm font-medium text-brand-goldLight">
+        <i class="fa-solid fa-shield-halved text-brand-gold mr-1.5"></i>
+        Acesso Imediato após a compra + <span class="font-bold text-white underline decoration-brand-gold">Garantia Incondicional de 7 Dias</span> + Suporte VIP no WhatsApp!
+    </div>
+
+    <!-- ========================================== -->
+    <!-- HEADER FIXO                                -->
+    <!-- ========================================== -->
+    <header class="sticky top-0 z-40 bg-brand-dark/90 backdrop-blur-md border-b border-white/10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 sm:h-20 flex items-center justify-between">
+            <!-- Logotipo -->
+            <a href="#inicio" class="flex items-center gap-3 group">
+                <div class="w-10 h-10 sm:w-11 sm:h-11 rounded-xl gold-bg-gradient flex items-center justify-center text-brand-dark font-display font-extrabold text-lg sm:text-xl shadow-gold group-hover:scale-105 transition-transform">
+                    EB
+                </div>
+                <div>
+                    <span class="block font-display font-bold text-sm sm:text-base tracking-tight text-white leading-none">
+                        A Magia da <span class="text-brand-gold">Transformação</span>
+                    </span>
+                    <span class="text-[11px] text-slate-400 tracking-wider uppercase">Everton Bispo de Souza</span>
+                </div>
+            </a>
+
+            <!-- Navegação Desktop -->
+            <nav class="hidden lg:flex items-center gap-7 text-sm font-medium text-slate-300">
+                <a href="#ebooks" class="hover:text-brand-gold transition-colors">E-books</a>
+                <a href="#combo" class="hover:text-brand-gold transition-colors">Combo Completo</a>
+                <a href="#quiz" class="hover:text-brand-gold transition-colors">Qual Guia Escolher?</a>
+                <a href="#enquetes" class="hover:text-brand-gold transition-colors">Enquetes & FAQ</a>
+                <a href="#autor" class="hover:text-brand-gold transition-colors">O Autor</a>
+            </nav>
+
+            <!-- Botão CTA Header -->
+            <div class="flex items-center gap-3">
+                <a href="#combo" class="gold-bg-gradient hover:brightness-110 text-brand-dark font-bold text-xs sm:text-sm px-4 sm:px-5 py-2.5 rounded-xl shadow-gold transition-all transform hover:-translate-y-0.5 flex items-center gap-2">
+                    <span>Quero Começar Agora</span>
+                    <i class="fa-solid fa-arrow-right text-xs"></i>
+                </a>
+                <!-- Botão Menu Mobile -->
+                <button id="mobile-menu-btn" aria-label="Abrir Menu" class="lg:hidden text-slate-300 hover:text-white p-2 rounded-lg border border-white/10">
+                    <i class="fa-solid fa-bars text-lg"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Menu Mobile Dropdown -->
+        <div id="mobile-menu" class="hidden lg:hidden bg-brand-moss border-b border-white/10 px-4 pt-3 pb-5 space-y-2">
+            <a href="#ebooks" class="mobile-link block py-2 px-3 rounded-lg text-slate-200 hover:bg-white/5">Catálogo de E-books</a>
+            <a href="#combo" class="mobile-link block py-2 px-3 rounded-lg text-brand-gold font-semibold hover:bg-white/5">Oferta Combo Completo (6 em 1)</a>
+            <a href="#quiz" class="mobile-link block py-2 px-3 rounded-lg text-slate-200 hover:bg-white/5">Quiz: Descubra Seu Guia Ideal</a>
+            <a href="#enquetes" class="mobile-link block py-2 px-3 rounded-lg text-slate-200 hover:bg-white/5">Enquetes & Perguntas Frequentes</a>
+            <a href="#autor" class="mobile-link block py-2 px-3 rounded-lg text-slate-200 hover:bg-white/5">Sobre Everton Bispo</a>
+        </div>
+    </header>
+
+    <!-- ========================================== -->
+    <!-- HERO SECTION                               -->
+    <!-- ========================================== -->
+    <section id="inicio" class="relative pt-12 pb-20 lg:pt-20 lg:pb-28 overflow-hidden">
+        <!-- Efeitos de luz de fundo -->
+        <div class="absolute top-0 left-1/4 w-96 h-96 bg-emerald-500/15 rounded-full blur-[120px] pointer-events-none"></div>
+        <div class="absolute bottom-0 right-1/4 w-96 h-96 bg-brand-gold/15 rounded-full blur-[120px] pointer-events-none"></div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                
+                <!-- Coluna Esquerda: Copywriting de Alta Conversão -->
+                <div class="lg:col-span-7 text-center lg:text-left">
+                    <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-brand-moss border border-brand-gold/30 text-brand-goldLight text-xs sm:text-sm font-medium mb-6">
+                        <span class="w-2 h-2 rounded-full bg-brand-emerald animate-ping"></span>
+                        <span>Método Científico, Prático e Sem Prisões</span>
+                    </div>
+
+                    <h1 class="font-display font-extrabold text-3xl sm:text-5xl lg:text-[54px] text-white leading-[1.12] tracking-tight mb-6">
+                        Desperte a <span class="gold-gradient-text">Magia da Transformação</span> no Seu Corpo e na Sua Mente
+                    </h1>
+
+                    <p class="text-slate-300 text-base sm:text-lg leading-relaxed max-w-2xl mx-auto lg:mx-0 mb-8">
+                        Guias práticos e definitivos criados por <strong class="text-white">Everton Bispo de Souza</strong> para você secar gordura, conquistar liberdade alimentar, treinar em casa, vencer a ansiedade e abandonar o cigarro de uma vez por todas.
+                    </p>
+
+                    <!-- Botões de Ação -->
+                    <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 mb-8">
+                        <a href="#combo" class="w-full sm:w-auto gold-bg-gradient hover:brightness-110 text-brand-dark font-extrabold text-base px-8 py-4 rounded-2xl shadow-gold transition-all transform hover:-translate-y-1 flex items-center justify-center gap-3">
+                            <i class="fa-solid fa-crown"></i>
+                            <span>Ver Combos & Método 360°</span>
+                        </a>
+                        <a href="#ebooks" class="w-full sm:w-auto bg-white/5 hover:bg-white/10 border border-white/15 text-white font-semibold text-base px-7 py-4 rounded-2xl transition-all flex items-center justify-center gap-2">
+                            <span>Ver E-books Individuais</span>
+                            <i class="fa-solid fa-chevron-down text-xs text-brand-gold"></i>
+                        </a>
+                    </div>
+
+                    <!-- Selos de Confiança e Garantia -->
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-4 border-t border-white/10 max-w-2xl mx-auto lg:mx-0">
+                        <div class="flex items-center justify-center lg:justify-start gap-2.5 text-xs sm:text-sm text-slate-300">
+                            <div class="w-8 h-8 rounded-lg bg-brand-gold/15 flex items-center justify-center text-brand-gold shrink-0">
+                                <i class="fa-solid fa-award"></i>
+                            </div>
+                            <span><strong class="text-white">Garantia de 7 Dias</strong><br>Risco Zero Absoluto</span>
+                        </div>
+                        <div class="flex items-center justify-center lg:justify-start gap-2.5 text-xs sm:text-sm text-slate-300">
+                            <div class="w-8 h-8 rounded-lg bg-brand-emerald/15 flex items-center justify-center text-brand-emerald shrink-0">
+                                <i class="fa-solid fa-bolt"></i>
+                            </div>
+                            <span><strong class="text-white">Entrega Imediata</strong><br>Leia no Celular ou PC</span>
+                        </div>
+                        <div class="flex items-center justify-center lg:justify-start gap-2.5 text-xs sm:text-sm text-slate-300">
+                            <div class="w-8 h-8 rounded-lg bg-green-500/15 flex items-center justify-center text-green-400 shrink-0">
+                                <i class="fa-brands fa-whatsapp"></i>
+                            </div>
+                            <span><strong class="text-white">Grupos VIP</strong><br>Suporte e Comunidade</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Coluna Direita: Showcase Visual 3D da Coleção -->
+                <div class="lg:col-span-5">
+                    <div class="relative bg-gradient-to-b from-brand-moss/90 to-brand-dark border border-brand-gold/30 rounded-3xl p-6 sm:p-8 shadow-2xl">
+                        <!-- Badge Destaque -->
+                        <div class="absolute -top-4 right-6 bg-brand-emerald text-brand-dark font-extrabold text-xs uppercase tracking-wider px-4 py-1.5 rounded-full shadow-lg">
+                            6 Guias Transformadores
+                        </div>
+
+                        <div class="grid grid-cols-2 gap-4 items-center justify-items-center mb-6">
+                            <!-- Mini Mockup 1 -->
+                            <div class="transform -rotate-3 hover:rotate-0 transition-transform duration-300 w-36 h-48 rounded-lg bg-gradient-to-br from-[#143326] to-[#081711] border border-lime-400/40 p-3 flex flex-col justify-between shadow-xl">
+                                <div class="text-[9px] text-lime-400 font-bold uppercase tracking-wider flex items-center gap-1">
+                                    <i class="fa-solid fa-leaf"></i> Emagrecimento
+                                </div>
+                                <div>
+                                    <div class="text-white font-display font-extrabold text-xs leading-tight">A MAGIA DA <span class="text-lime-400">TRANSFORMAÇÃO</span></div>
+                                    <div class="text-[9px] text-slate-300 mt-1">Chás, Dieta & Secar Gordura</div>
+                                </div>
+                                <div class="text-[8px] text-brand-gold border-t border-white/10 pt-1">Everton Bispo</div>
+                            </div>
+
+                            <!-- Mini Mockup 2 -->
+                            <div class="transform rotate-3 hover:rotate-0 transition-transform duration-300 w-36 h-48 rounded-lg bg-gradient-to-br from-[#1E242B] to-[#0D1014] border border-yellow-400/40 p-3 flex flex-col justify-between shadow-xl">
+                                <div class="text-[9px] text-yellow-400 font-bold uppercase tracking-wider flex items-center gap-1">
+                                    <i class="fa-solid fa-dumbbell"></i> Fitness
+                                </div>
+                                <div>
+                                    <div class="text-yellow-400 font-display font-extrabold text-xs leading-tight">TREINO EM CASA</div>
+                                    <div class="text-[9px] text-slate-300 mt-1">Secar, Definir e Condicionar</div>
+                                </div>
+                                <div class="text-[8px] text-slate-400 border-t border-white/10 pt-1">Everton Bispo</div>
+                            </div>
+
+                            <!-- Mini Mockup 3 -->
+                            <div class="transform rotate-2 hover:rotate-0 transition-transform duration-300 w-36 h-48 rounded-lg bg-gradient-to-br from-[#163842] to-[#09191E] border border-cyan-400/40 p-3 flex flex-col justify-between shadow-xl">
+                                <div class="text-[9px] text-cyan-300 font-bold uppercase tracking-wider flex items-center gap-1">
+                                    <i class="fa-solid fa-wind"></i> Liberdade
+                                </div>
+                                <div>
+                                    <div class="text-cyan-300 font-display font-extrabold text-xs leading-tight">TABAGISMO: O CAMINHO</div>
+                                    <div class="text-[9px] text-slate-200 mt-1">Guia Definitivo Parar de Fumar</div>
+                                </div>
+                                <div class="text-[8px] text-slate-300 border-t border-white/10 pt-1">Everton Bispo</div>
+                            </div>
+
+                            <!-- Mini Mockup 4 -->
+                            <div class="transform -rotate-2 hover:rotate-0 transition-transform duration-300 w-36 h-48 rounded-lg bg-gradient-to-br from-[#2C2543] to-[#130F21] border border-purple-400/40 p-3 flex flex-col justify-between shadow-xl">
+                                <div class="text-[9px] text-purple-300 font-bold uppercase tracking-wider flex items-center gap-1">
+                                    <i class="fa-solid fa-brain"></i> Mente Leve
+                                </div>
+                                <div>
+                                    <div class="text-white font-display font-extrabold text-xs leading-tight">CONTROLE DA <span class="text-purple-300">ANSIEDADE</span></div>
+                                    <div class="text-[9px] text-slate-300 mt-1">Equilíbrio Mental & Bem-Estar</div>
+                                </div>
+                                <div class="text-[8px] text-brand-gold border-t border-white/10 pt-1">Everton Bispo</div>
+                            </div>
+                        </div>
+
+                        <div class="bg-brand-dark/80 rounded-2xl p-4 border border-white/10 flex items-center justify-between">
+                            <div>
+                                <span class="text-xs text-slate-400 block">Acesso Digital Vitalício</span>
+                                <span class="text-sm font-bold text-white">+ Bônus Exclusivos Inclusos</span>
+                            </div>
+                            <a href="#quiz" class="text-xs font-bold text-brand-gold hover:underline flex items-center gap-1">
+                                Fazer Teste Rápido <i class="fa-solid fa-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ========================================== -->
+    <!-- CATÁLOGO DE E-BOOKS INDIVIDUAIS (KIWIFY)   -->
+    <!-- ========================================== -->
+    <section id="ebooks" class="py-20 bg-brand-dark border-t border-white/5">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-10 reveal">
+                <span class="text-brand-gold font-bold text-xs uppercase tracking-widest">Catálogo Oficial</span>
+                <h2 class="font-display font-extrabold text-3xl sm:text-4xl text-white mt-2 mb-4">
+                    Escolha o Seu <span class="gold-gradient-text">Guia de Transformação</span>
+                </h2>
+                <p class="text-slate-300 text-sm sm:text-base">
+                    Clique abaixo para filtrar por objetivo ou garanta diretamente o seu e-book com acesso imediato.
+                </p>
+            </div>
+
+            <!-- Filtros de Categoria -->
+            <div class="flex flex-wrap items-center justify-center gap-2 sm:gap-3 mb-12 reveal">
+                <button data-filter="all" class="filter-btn active bg-brand-gold text-brand-dark font-bold text-xs sm:text-sm px-5 py-2.5 rounded-xl transition-all">
+                    Todos os E-books (6)
+                </button>
+                <button data-filter="emagrecimento" class="filter-btn bg-white/5 text-slate-300 hover:text-white font-semibold text-xs sm:text-sm px-5 py-2.5 rounded-xl border border-white/10 transition-all">
+                    Emagrecimento & Nutrição
+                </button>
+                <button data-filter="fitness" class="filter-btn bg-white/5 text-slate-300 hover:text-white font-semibold text-xs sm:text-sm px-5 py-2.5 rounded-xl border border-white/10 transition-all">
+                    Fitness & Receitas
+                </button>
+                <button data-filter="mente" class="filter-btn bg-white/5 text-slate-300 hover:text-white font-semibold text-xs sm:text-sm px-5 py-2.5 rounded-xl border border-white/10 transition-all">
+                    Mente, Ansiedade & Tabagismo
+                </button>
+            </div>
+
+            <!-- Grid Dinâmico dos E-books -->
+            <div id="books-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 reveal">
+                <!-- Preenchido via JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- ========================================== -->
+    <!-- OFERTA ESPECIAL: COMBOS & MÉTODO 360°      -->
+    <!-- ========================================== -->
+    <section id="combo" class="py-24 relative overflow-hidden">
+        <div class="absolute inset-0 bg-gradient-to-b from-brand-dark via-brand-moss/60 to-brand-dark pointer-events-none"></div>
+        
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 reveal">
+            <!-- Destaque Principal: Método 360° (Link 1: https://kiwify.app/No1no7m) -->
+            <div class="rounded-3xl bg-gradient-to-br from-[#163329] via-[#0F241D] to-[#0A1612] border-2 border-brand-gold shadow-gold overflow-hidden mb-12">
+                <div class="gold-bg-gradient py-2.5 px-4 text-center text-brand-dark font-display font-extrabold text-xs sm:text-sm uppercase tracking-wider">
+                    <i class="fa-solid fa-fire mr-1.5"></i> Coleção Completa • Checkout Oficial Kiwify com Acesso Imediato
+                </div>
+
+                <div class="p-6 sm:p-10 lg:p-12">
+                    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+                        <!-- Detalhes do Método 360° -->
+                        <div class="lg:col-span-7">
+                            <span class="inline-block px-3 py-1 rounded-full bg-brand-emerald/20 text-brand-emerald text-xs font-bold mb-3">
+                                TRANSFORMAÇÃO COMPLETA • CORPO + MENTE
+                            </span>
+                            <h2 class="font-display font-extrabold text-2xl sm:text-4xl text-white leading-tight mb-4">
+                                Método 360°: <span class="gold-gradient-text">Leve o Método Completo</span>
+                            </h2>
+                            <p class="text-slate-300 text-sm sm:text-base mb-6">
+                                Todos os guias oficiais de <strong class="text-white">Everton Bispo de Souza</strong> reunidos em uma única experiência para emagrecer, treinar em casa, controlar a ansiedade e conquistar liberdade definitiva.
+                            </p>
+
+                            <ul class="space-y-3 text-sm text-slate-200 mb-6">
+                                <li class="flex items-start gap-2.5">
+                                    <i class="fa-solid fa-circle-check text-brand-emerald mt-1"></i>
+                                    <span><strong>Nutrição Sem Prisões + Dieta & Chás + Dieta Inteligente</strong></span>
+                                </li>
+                                <li class="flex items-start gap-2.5">
+                                    <i class="fa-solid fa-circle-check text-brand-emerald mt-1"></i>
+                                    <span><strong>100+ Exercícios: A Magia da Transformação</strong> (Treinos em Casa)</span>
+                                </li>
+                                <li class="flex items-start gap-2.5">
+                                    <i class="fa-solid fa-circle-check text-brand-emerald mt-1"></i>
+                                    <span><strong>Tabagismo: O Caminho para a Liberdade + Ansiedade Sob Controle</strong></span>
+                                </li>
+                                <li class="flex items-start gap-2.5 text-brand-goldLight">
+                                    <i class="fa-solid fa-gift text-brand-gold mt-1"></i>
+                                    <span><strong>BÔNUS VIP:</strong> Acesso aos Grupos Exclusivos de Suporte no WhatsApp</span>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <!-- Box de Preço e Botão Direto Kiwify -->
+                        <div class="lg:col-span-5 bg-brand-dark/90 border border-brand-gold/40 rounded-2xl p-6 sm:p-7 text-center shadow-xl">
+                            <span class="text-xs uppercase tracking-wider text-slate-400">Valor separado: <del class="text-red-400">R$ 388,00</del></span>
+                            <div class="my-3">
+                                <span class="text-sm text-slate-300 block">Investimento único de</span>
+                                <div class="font-display font-extrabold text-4xl sm:text-5xl text-white my-1">
+                                    <span class="text-brand-gold text-2xl align-top">R$</span> 297,00
+                                </div>
+                                <span class="text-sm font-medium text-brand-emerald">ou em até 12x no cartão via Kiwify</span>
+                            </div>
+
+                            <a href="https://kiwify.app/No1no7m" target="_blank" rel="noopener noreferrer" class="w-full mt-4 gold-bg-gradient hover:brightness-110 text-brand-dark font-extrabold text-sm sm:text-base py-4 px-6 rounded-xl shadow-gold transition-all transform hover:scale-[1.02] flex items-center justify-center gap-2">
+                                <i class="fa-solid fa-lock"></i>
+                                <span>COMPRAR AGORA NA KIWIFY</span>
+                            </a>
+
+                            <div class="mt-4 pt-4 border-t border-white/10 space-y-1.5 text-xs text-slate-400">
+                                <p class="flex items-center justify-center gap-1.5 text-slate-300">
+                                    <i class="fa-solid fa-shield-halved text-brand-gold"></i> Garantia Incondicional de 7 Dias
+                                </p>
+                                <p class="text-[11px] text-brand-emerald">Checkout Oficial Kiwify • Entrega Imediata</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Grid dos Outros 3 Combos Ativos da Kiwify -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- Combo Respire Liberdade -->
+                <div class="bg-brand-card border border-white/10 hover:border-cyan-400/50 rounded-2xl p-6 flex flex-col justify-between transition-all">
+                    <div>
+                        <span class="text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-full bg-cyan-500/15 text-cyan-300">Combo Mente & Liberdade</span>
+                        <h3 class="font-display font-bold text-lg text-white mt-3 mb-2">Combo Respire Liberdade: Mente Calma</h3>
+                        <p class="text-xs text-slate-300 leading-relaxed mb-4">
+                            União poderosa dos guias <strong>Ansiedade Sob Controle</strong> + <strong>Tabagismo: O Caminho para a Liberdade</strong> para paz mental e abandono do vício.
+                        </p>
+                    </div>
+                    <div class="pt-4 border-t border-white/10">
+                        <div class="flex items-baseline justify-between mb-3">
+                            <span class="text-xs text-slate-400 line-through">R$ 90,00</span>
+                            <span class="font-display font-extrabold text-2xl text-white">R$ 67,00</span>
+                        </div>
+                        <button onclick="openProductAction('combo-respire')" class="w-full bg-white/10 hover:bg-brand-gold hover:text-brand-dark text-white font-bold text-xs sm:text-sm py-3 px-4 rounded-xl border border-brand-gold/40 transition-all flex items-center justify-center gap-2">
+                            <i class="fa-solid fa-bag-shopping"></i>
+                            <span>GARANTIR COMBO RESPIRE</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Combo Especial Manual -->
+                <div class="bg-brand-card border border-brand-emerald/40 hover:border-brand-emerald rounded-2xl p-6 flex flex-col justify-between transition-all relative">
+                    <span class="absolute -top-3 right-4 bg-brand-emerald text-brand-dark text-[10px] font-extrabold uppercase px-3 py-0.5 rounded-full">Mais Procurado</span>
+                    <div>
+                        <span class="text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-full bg-brand-emerald/15 text-brand-emerald">Combo Essencial</span>
+                        <h3 class="font-display font-bold text-lg text-white mt-3 mb-2">Combo Especial Manual "A Magia da Transformação"</h3>
+                        <p class="text-xs text-slate-300 leading-relaxed mb-4">
+                            O pacote prático reunindo os manuais essenciais de reeducação alimentar, estratégias metabólicas e rotina saudável.
+                        </p>
+                    </div>
+                    <div class="pt-4 border-t border-white/10">
+                        <div class="flex items-baseline justify-between mb-3">
+                            <span class="text-xs text-slate-400 line-through">R$ 134,00</span>
+                            <span class="font-display font-extrabold text-2xl text-white">R$ 97,00</span>
+                        </div>
+                        <button onclick="openProductAction('combo-manual')" class="w-full bg-brand-emerald/20 hover:bg-brand-emerald hover:text-brand-dark text-white font-bold text-xs sm:text-sm py-3 px-4 rounded-xl border border-brand-emerald/50 transition-all flex items-center justify-center gap-2">
+                            <i class="fa-solid fa-bag-shopping"></i>
+                            <span>GARANTIR COMBO MANUAL</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Combo Corpo -->
+                <div class="bg-brand-card border border-white/10 hover:border-brand-gold/50 rounded-2xl p-6 flex flex-col justify-between transition-all">
+                    <div>
+                        <span class="text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-full bg-brand-gold/15 text-brand-gold">Combo Estética & Treino</span>
+                        <h3 class="font-display font-bold text-lg text-white mt-3 mb-2">Combo Corpo: A Magia da Transformação</h3>
+                        <p class="text-xs text-slate-300 leading-relaxed mb-4">
+                            Combinação completa de <strong>Dieta + Nutrição Sem Prisões + 100+ Exercícios</strong> para secar gordura e definir o corpo em casa.
+                        </p>
+                    </div>
+                    <div class="pt-4 border-t border-white/10">
+                        <div class="flex items-baseline justify-between mb-3">
+                            <span class="text-xs text-slate-400 line-through">R$ 231,00</span>
+                            <span class="font-display font-extrabold text-2xl text-white">R$ 197,00</span>
+                        </div>
+                        <button onclick="openProductAction('combo-corpo')" class="w-full bg-white/10 hover:bg-brand-gold hover:text-brand-dark text-white font-bold text-xs sm:text-sm py-3 px-4 rounded-xl border border-brand-gold/40 transition-all flex items-center justify-center gap-2">
+                            <i class="fa-solid fa-bag-shopping"></i>
+                            <span>GARANTIR COMBO CORPO</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========================================== -->
+    <!-- ENQUETE INTERATIVA DE DIAGNÓSTICO (QUIZ)    -->
+    <!-- ========================================== -->
+    <section id="quiz" class="py-20 bg-brand-moss/30 border-y border-white/5">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 reveal">
+            <div class="text-center mb-10">
+                <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-brand-gold/15 text-brand-gold text-xs font-bold uppercase tracking-wider mb-3">
+                    <i class="fa-solid fa-wand-magic-sparkles"></i> Diagnóstico Personalizado
+                </span>
+                <h2 class="font-display font-extrabold text-3xl sm:text-4xl text-white mb-3">
+                    Descubra o <span class="text-brand-gold">Guia Ideal</span> para Você
+                </h2>
+                <p class="text-slate-300 text-sm sm:text-base">
+                    Responda a 3 perguntas rápidas e nosso sistema indicará exatamente qual e-book vai acelerar os seus resultados hoje.
+                </p>
+            </div>
+
+            <!-- Container do Quiz -->
+            <div class="bg-brand-card border border-white/10 rounded-3xl p-6 sm:p-10 shadow-2xl">
+                <!-- Barra de Progresso -->
+                <div class="mb-8">
+                    <div class="flex justify-between text-xs font-semibold text-slate-400 mb-2">
+                        <span id="quiz-step-label">Pergunta 1 de 3</span>
+                        <span id="quiz-percent-label">33%</span>
+                    </div>
+                    <div class="w-full h-2.5 bg-brand-dark rounded-full overflow-hidden">
+                        <div id="quiz-progress-bar" class="h-full gold-bg-gradient transition-all duration-500" style="width: 33.3%;"></div>
+                    </div>
+                </div>
+
+                <!-- Área das Perguntas -->
+                <div id="quiz-question-container">
+                    <!-- Preenchido via JS -->
+                </div>
+
+                <!-- Área do Resultado (Oculta inicialmente) -->
+                <div id="quiz-result-container" class="hidden">
+                    <!-- Preenchido via JS -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========================================== -->
+    <!-- ENQUETES DA COMUNIDADE & FAQ               -->
+    <!-- ========================================== -->
+    <section id="enquetes" class="py-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-14 reveal">
+                <span class="text-brand-emerald font-bold text-xs uppercase tracking-widest">Transparência & Interatividade</span>
+                <h2 class="font-display font-extrabold text-3xl sm:text-4xl text-white mt-2 mb-4">
+                    Enquetes da Comunidade & <span class="text-brand-gold">Dúvidas Frequentes</span>
+                </h2>
+                <p class="text-slate-300 text-sm sm:text-base">
+                    Participe das nossas enquetes rápidas abaixo para ver o que outras pessoas estão buscando e tire todas as suas dúvidas antes de adquirir seu guia.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
+                
+                <!-- Coluna Esquerda: Enquetes Votáveis em Tempo Real (5 colunas) -->
+                <div class="lg:col-span-5 space-y-6 reveal">
+                    <div class="flex items-center gap-2 text-brand-gold font-display font-bold text-lg mb-2">
+                        <i class="fa-solid fa-square-poll-vertical"></i>
+                        <h3>Enquetes Rápidas (Vote e Veja)</h3>
+                    </div>
+
+                    <!-- Enquete 1 -->
+                    <div class="bg-brand-card border border-white/10 rounded-2xl p-6 shadow-lg" data-poll-id="poll1">
+                        <h4 class="font-bold text-white text-base mb-1">1. Qual é o seu maior desafio de saúde hoje?</h4>
+                        <p class="text-xs text-slate-400 mb-4">Clique em uma opção para ver o resultado da comunidade:</p>
+                        <div class="space-y-3 poll-options">
+                            <!-- Opções renderizadas via JS -->
+                        </div>
+                        <div class="mt-4 pt-3 border-t border-white/10 flex justify-between items-center text-xs text-slate-400">
+                            <span class="poll-total">1.428 votos registrados</span>
+                            <span class="text-brand-emerald font-medium hidden poll-voted-badge"><i class="fa-solid fa-check mr-1"></i>Voto computado</span>
+                        </div>
+                    </div>
+
+                    <!-- Enquete 2 -->
+                    <div class="bg-brand-card border border-white/10 rounded-2xl p-6 shadow-lg" data-poll-id="poll2">
+                        <h4 class="font-bold text-white text-base mb-1">2. Você já tentou dietas restritivas que não funcionaram?</h4>
+                        <p class="text-xs text-slate-400 mb-4">Sua resposta ajuda a entender a busca por liberdade alimentar:</p>
+                        <div class="space-y-3 poll-options">
+                            <!-- Opções renderizadas via JS -->
+                        </div>
+                        <div class="mt-4 pt-3 border-t border-white/10 flex justify-between items-center text-xs text-slate-400">
+                            <span class="poll-total">984 votos registrados</span>
+                            <span class="text-brand-emerald font-medium hidden poll-voted-badge"><i class="fa-solid fa-check mr-1"></i>Voto computado</span>
+                        </div>
+                    </div>
+
+                    <!-- Enquete 3 -->
+                    <div class="bg-brand-card border border-white/10 rounded-2xl p-6 shadow-lg" data-poll-id="poll3">
+                        <h4 class="font-bold text-white text-base mb-1">3. Como você prefere aplicar novos hábitos no dia a dia?</h4>
+                        <p class="text-xs text-slate-400 mb-4">Escolha a opção que mais combina com sua rotina:</p>
+                        <div class="space-y-3 poll-options">
+                            <!-- Opções renderizadas via JS -->
+                        </div>
+                        <div class="mt-4 pt-3 border-t border-white/10 flex justify-between items-center text-xs text-slate-400">
+                            <span class="poll-total">1.156 votos registrados</span>
+                            <span class="text-brand-emerald font-medium hidden poll-voted-badge"><i class="fa-solid fa-check mr-1"></i>Voto computado</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Coluna Direita: Acordeão FAQ Completo (7 colunas) -->
+                <div class="lg:col-span-7 reveal">
+                    <div class="flex items-center gap-2 text-brand-emerald font-display font-bold text-lg mb-4">
+                        <i class="fa-solid fa-circle-question"></i>
+                        <h3>Perguntas Frequentes (Respostas Diretas)</h3>
+                    </div>
+
+                    <div class="space-y-3" id="faq-accordion">
+                        <!-- FAQ Item 1 -->
+                        <div class="faq-item bg-brand-card border border-white/10 rounded-2xl overflow-hidden">
+                            <button class="faq-trigger w-full px-6 py-4 text-left flex items-center justify-between gap-4 font-semibold text-white hover:text-brand-gold transition-colors">
+                                <span>Como e quando recebo meu e-book após a compra?</span>
+                                <i class="fa-solid fa-chevron-down text-brand-gold text-sm transition-transform duration-300"></i>
+                            </button>
+                            <div class="faq-content hidden px-6 pb-5 text-sm text-slate-300 leading-relaxed border-t border-white/5 pt-3">
+                                A entrega é <strong class="text-white">100% digital e imediata</strong>. Assim que o pagamento for confirmado (via Pix ou Cartão), você recebe o acesso direto no seu e-mail e também pode solicitar o envio imediato pelo nosso WhatsApp oficial <strong class="text-brand-emerald">(67) 98186-877</strong>.
+                            </div>
+                        </div>
+
+                        <!-- FAQ Item 2 -->
+                        <div class="faq-item bg-brand-card border border-white/10 rounded-2xl overflow-hidden">
+                            <button class="faq-trigger w-full px-6 py-4 text-left flex items-center justify-between gap-4 font-semibold text-white hover:text-brand-gold transition-colors">
+                                <span>Como funciona a Garantia Incondicional de 7 Dias?</span>
+                                <i class="fa-solid fa-chevron-down text-brand-gold text-sm transition-transform duration-300"></i>
+                            </button>
+                            <div class="faq-content hidden px-6 pb-5 text-sm text-slate-300 leading-relaxed border-t border-white/5 pt-3">
+                                Você tem <strong class="text-white">7 dias corridos</strong> a partir da compra para ler, testar as estratégias, receitas e treinos. Se por qualquer motivo achar que o conteúdo não é para você, basta enviar uma mensagem para nosso suporte dentro desse prazo e devolveremos <strong class="text-brand-gold">100% do seu dinheiro</strong>, sem burocracia e sem perguntas.
+                            </div>
+                        </div>
+
+                        <!-- FAQ Item 3 -->
+                        <div class="faq-item bg-brand-card border border-white/10 rounded-2xl overflow-hidden">
+                            <button class="faq-trigger w-full px-6 py-4 text-left flex items-center justify-between gap-4 font-semibold text-white hover:text-brand-gold transition-colors">
+                                <span>Posso ler os e-books no celular, tablet ou computador?</span>
+                                <i class="fa-solid fa-chevron-down text-brand-gold text-sm transition-transform duration-300"></i>
+                            </button>
+                            <div class="faq-content hidden px-6 pb-5 text-sm text-slate-300 leading-relaxed border-t border-white/5 pt-3">
+                                Sim! Todos os e-books da série <em>A Magia da Transformação</em> são entregues em formato PDF de alta definição, totalmente otimizado para leitura confortável na tela do celular (Android ou iPhone), tablet, computador e Kindle. Além disso, o acesso é <strong class="text-white">vitalício</strong> e você pode baixar quantas vezes quiser.
+                            </div>
+                        </div>
+
+                        <!-- FAQ Item 4 -->
+                        <div class="faq-item bg-brand-card border border-white/10 rounded-2xl overflow-hidden">
+                            <button class="faq-trigger w-full px-6 py-4 text-left flex items-center justify-between gap-4 font-semibold text-white hover:text-brand-gold transition-colors">
+                                <span>Tenho acesso aos grupos de WhatsApp para tirar dúvidas?</span>
+                                <i class="fa-solid fa-chevron-down text-brand-gold text-sm transition-transform duration-300"></i>
+                            </button>
+                            <div class="faq-content hidden px-6 pb-5 text-sm text-slate-300 leading-relaxed border-t border-white/5 pt-3">
+                                Com certeza! Ao adquirir nossos materiais, você ganha acesso aos nossos <strong class="text-brand-emerald">Grupos Exclusivos de WhatsApp</strong>, onde compartilhamos conteúdos complementares, motivação diária e suporte para sanar dúvidas sobre sua evolução. Nosso atendimento funciona de <strong class="text-white">segunda a sábado, das 08h às 18h</strong>.
+                            </div>
+                        </div>
+
+                        <!-- FAQ Item 5 -->
+                        <div class="faq-item bg-brand-card border border-white/10 rounded-2xl overflow-hidden">
+                            <button class="faq-trigger w-full px-6 py-4 text-left flex items-center justify-between gap-4 font-semibold text-white hover:text-brand-gold transition-colors">
+                                <span>Preciso de equipamentos de academia para o e-book de Treino em Casa?</span>
+                                <i class="fa-solid fa-chevron-down text-brand-gold text-sm transition-transform duration-300"></i>
+                            </button>
+                            <div class="faq-content hidden px-6 pb-5 text-sm text-slate-300 leading-relaxed border-t border-white/5 pt-3">
+                                Não! O guia <em>Treino em Casa para Secar, Definir e Ganhar Condicionamento</em> foi desenvolvido justamente para quem não tem tempo ou não quer ir à academia. Você utilizará o peso do próprio corpo e itens simples que já possui em casa, com treinos rápidos e progressivos.
+                            </div>
+                        </div>
+
+                        <!-- FAQ Item 6 -->
+                        <div class="faq-item bg-brand-card border border-white/10 rounded-2xl overflow-hidden">
+                            <button class="faq-trigger w-full px-6 py-4 text-left flex items-center justify-between gap-4 font-semibold text-white hover:text-brand-gold transition-colors">
+                                <span>Nunca tentei parar de fumar ou controlar a ansiedade sozinho(a). Vai funcionar para mim?</span>
+                                <i class="fa-solid fa-chevron-down text-brand-gold text-sm transition-transform duration-300"></i>
+                            </button>
+                            <div class="faq-content hidden px-6 pb-5 text-sm text-slate-300 leading-relaxed border-t border-white/5 pt-3">
+                                Sim. Nossos guias de <em>Tabagismo</em> e <em>Controle da Ansiedade</em> trabalham a raiz comportamental, os gatilhos emocionais e técnicas práticas de respiração, substituição de hábitos e reprogramação mental passo a passo, respeitando o seu ritmo.
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- CTA Dúvida Direta -->
+                    <div class="mt-6 p-5 rounded-2xl bg-gradient-to-r from-brand-moss to-brand-card border border-brand-gold/30 flex flex-col sm:flex-row items-center justify-between gap-4">
+                        <div class="text-center sm:text-left">
+                            <h4 class="font-bold text-white text-sm sm:text-base">Ainda ficou com alguma dúvida específica?</h4>
+                            <p class="text-xs text-slate-300">Fale diretamente com nossa equipe no WhatsApp (08h às 18h).</p>
+                        </div>
+                        <a href="https://wa.me/556798186877?text=Ol%C3%A1%20Everton!%20Estou%20no%20site%20A%20Magia%20da%20Transforma%C3%A7%C3%A3o%20e%20gostaria%20de%20tirar%20uma%20d%C3%BAvida." target="_blank" rel="noopener noreferrer" class="shrink-0 bg-[#25D366] hover:brightness-110 text-brand-dark font-bold text-xs sm:text-sm px-5 py-3 rounded-xl flex items-center gap-2 transition-all">
+                            <i class="fa-brands fa-whatsapp text-base"></i>
+                            <span>Chamar no WhatsApp</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========================================== -->
+    <!-- BLOCO DE GARANTIA INCONDICIONAL DE 7 DIAS  -->
+    <!-- ========================================== -->
+    <section class="py-16 bg-brand-moss/50 border-y border-brand-gold/20">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 reveal">
+            <div class="bg-brand-dark border border-brand-gold/40 rounded-3xl p-8 sm:p-10 flex flex-col md:flex-row items-center gap-8 shadow-gold">
+                <!-- Selo Dourado SVG -->
+                <div class="shrink-0 relative w-36 h-36 flex items-center justify-center">
+                    <div class="absolute inset-0 rounded-full gold-bg-gradient opacity-20 animate-pulse"></div>
+                    <div class="w-32 h-32 rounded-full border-4 border-brand-gold bg-brand-moss flex flex-col items-center justify-center text-center p-2 shadow-xl">
+                        <span class="text-[10px] font-bold uppercase tracking-widest text-brand-goldLight">Garantia</span>
+                        <span class="font-display font-extrabold text-4xl gold-gradient-text leading-none my-0.5">7</span>
+                        <span class="text-xs font-extrabold uppercase tracking-wider text-white">DIAS</span>
+                        <div class="flex text-brand-gold text-[9px] mt-1 gap-0.5">
+                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Texto da Garantia -->
+                <div class="text-center md:text-left">
+                    <h3 class="font-display font-extrabold text-2xl sm:text-3xl text-white mb-3">
+                        Seu Risco é <span class="text-brand-gold">Absolutamente Zero!</span>
+                    </h3>
+                    <p class="text-slate-300 text-sm sm:text-base leading-relaxed mb-4">
+                        Confiamos tanto na qualidade e nos resultados práticos da coleção <strong class="text-white">A Magia da Transformação</strong> que oferecemos uma <strong class="text-brand-goldLight">Garantia Incondicional de 7 Dias</strong>. Adquira hoje, explore todo o conteúdo e, se não ficar 100% satisfeito, devolvemos integralmente o seu investimento.
+                    </p>
+                    <span class="inline-flex items-center gap-2 text-xs font-semibold text-brand-emerald">
+                        <i class="fa-solid fa-circle-check"></i> Proteção garantida pelo Código de Defesa do Consumidor e compromisso oficial Everton Bispo.
+                    </span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========================================== -->
+    <!-- SOBRE O AUTOR (EVERTON BISPO DE SOUZA)     -->
+    <!-- ========================================== -->
+    <section id="autor" class="py-20">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 reveal">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center bg-brand-card border border-white/10 rounded-3xl p-8 sm:p-12">
+                <!-- Avatar / Emblema Oficial do Autor -->
+                <div class="lg:col-span-4 flex flex-col items-center text-center">
+                    <div class="w-44 h-44 rounded-3xl bg-gradient-to-br from-[#2B2212] via-[#132A22] to-[#0A1612] border-2 border-brand-gold flex flex-col items-center justify-center shadow-gold mb-4 relative overflow-hidden">
+                        <div class="font-display font-extrabold text-6xl gold-gradient-text tracking-tighter">EB</div>
+                        <span class="text-[10px] uppercase tracking-[0.25em] text-brand-goldLight mt-1">Autor Oficial</span>
+                    </div>
+                    <h4 class="font-display font-bold text-xl text-white">Everton Bispo de Souza</h4>
+                    <p class="text-xs text-brand-gold font-medium mt-1">Criador da Série A Magia da Transformação</p>
+
+                    <!-- Redes Sociais do Autor -->
+                    <div class="flex flex-wrap items-center justify-center gap-2 mt-4">
+                        <a href="https://instagram.com/evertonbispooficial" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white/5 hover:bg-brand-gold hover:text-brand-dark text-xs font-semibold text-slate-200 border border-white/10 transition-all">
+                            <i class="fa-brands fa-instagram"></i> @evertonbispooficial
+                        </a>
+                        <a href="https://instagram.com/universofit" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white/5 hover:bg-brand-emerald hover:text-brand-dark text-xs font-semibold text-slate-200 border border-white/10 transition-all">
+                            <i class="fa-brands fa-instagram"></i> @universofit
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Biografia e Missão -->
+                <div class="lg:col-span-8">
+                    <span class="text-brand-gold font-bold text-xs uppercase tracking-widest">Quem Criou Este Método</span>
+                    <h3 class="font-display font-extrabold text-2xl sm:text-3xl text-white mt-2 mb-4">
+                        Transformando Hábitos em Liberdade Física e Mental
+                    </h3>
+                    <div class="space-y-4 text-slate-300 text-sm sm:text-base leading-relaxed">
+                        <p>
+                            <strong class="text-white">Everton Bispo de Souza</strong> dedica seu trabalho a ajudar pessoas comuns a conquistarem resultados extraordinários na saúde, no emagrecimento e no equilíbrio emocional — sem fórmulas milagrosas, sem dietas impossíveis e sem prisões mentais.
+                        </p>
+                        <p>
+                            Através da coleção <strong class="text-brand-goldLight">A Magia da Transformação</strong> e das comunidades digitais <strong class="text-white">@evertonbispooficial</strong> e <strong class="text-white">@universofit</strong>, já impactou milhares de leitores com estratégias práticas para secar gordura, treinar em casa, vencer a ansiedade e se libertar definitivamente do tabagismo.
+                        </p>
+                    </div>
+
+                    <div class="grid grid-cols-2 sm:grid-cols-3 gap-4 mt-8 pt-6 border-t border-white/10">
+                        <div>
+                            <span class="font-display font-extrabold text-2xl text-brand-gold block">6 Guias</span>
+                            <span class="text-xs text-slate-400">Completos e Práticos</span>
+                        </div>
+                        <div>
+                            <span class="font-display font-extrabold text-2xl text-brand-emerald block">100%</span>
+                            <span class="text-xs text-slate-400">Foco em Resultados Reais</span>
+                        </div>
+                        <div class="col-span-2 sm:col-span-1">
+                            <span class="font-display font-extrabold text-2xl text-white block">Suporte VIP</span>
+                            <span class="text-xs text-slate-400">Comunidade no WhatsApp</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========================================== -->
+    <!-- RODAPÉ COMPLETO                            -->
+    <!-- ========================================== -->
+    <footer class="bg-[#060E0B] border-t border-white/10 pt-14 pb-24 sm:pb-14">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 pb-10 border-b border-white/10">
+                
+                <!-- Coluna 1: Marca -->
+                <div>
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="w-10 h-10 rounded-xl gold-bg-gradient flex items-center justify-center text-brand-dark font-display font-extrabold text-lg">
+                            EB
+                        </div>
+                        <div>
+                            <span class="block font-display font-bold text-white text-sm">A Magia da Transformação</span>
+                            <span class="text-xs text-slate-400">Everton Bispo de Souza</span>
+                        </div>
+                    </div>
+                    <p class="text-xs text-slate-400 leading-relaxed">
+                        Conhecimento prático para transformar sua saúde, corpo, alimentação e mente com liberdade e consistência.
+                    </p>
+                </div>
+
+                <!-- Coluna 2: Links Rápidos -->
+                <div>
+                    <h4 class="font-display font-bold text-white text-sm uppercase tracking-wider mb-4">Navegação</h4>
+                    <ul class="space-y-2.5 text-xs sm:text-sm text-slate-400">
+                        <li><a href="#ebooks" class="hover:text-brand-gold transition-colors">Catálogo de E-books</a></li>
+                        <li><a href="#combo" class="hover:text-brand-gold transition-colors">Combo Completo (6 em 1)</a></li>
+                        <li><a href="#quiz" class="hover:text-brand-gold transition-colors">Descubra Seu Guia Ideal</a></li>
+                        <li><a href="#enquetes" class="hover:text-brand-gold transition-colors">Enquetes & Perguntas Frequentes</a></li>
+                    </ul>
+                </div>
+
+                <!-- Coluna 3: Atendimento & Contato -->
+                <div>
+                    <h4 class="font-display font-bold text-white text-sm uppercase tracking-wider mb-4">Atendimento & Suporte</h4>
+                    <ul class="space-y-3 text-xs sm:text-sm text-slate-300">
+                        <li class="flex items-center gap-2.5">
+                            <i class="fa-brands fa-whatsapp text-green-400 text-base"></i>
+                            <a href="https://wa.me/556798186877?text=Ol%C3%A1!%20Gostaria%20de%20mais%20informa%C3%A7%C3%B5es%20sobre%20os%20e-books%20A%20Magia%20da%20Transforma%C3%A7%C3%A3o." target="_blank" rel="noopener noreferrer" class="hover:text-brand-gold transition-colors">
+                                (67) 98186-877 (WhatsApp)
+                            </a>
+                        </li>
+                        <li class="flex items-center gap-2.5">
+                            <i class="fa-solid fa-phone text-brand-gold text-sm"></i>
+                            <span>(67) 98186-877</span>
+                        </li>
+                        <li class="flex items-start gap-2.5 text-slate-400">
+                            <i class="fa-regular fa-clock text-brand-emerald mt-0.5"></i>
+                            <span>Horário de Funcionamento:<br><strong class="text-slate-200">Segunda a Sábado, das 08h às 18h</strong></span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Coluna 4: Redes Sociais -->
+                <div>
+                    <h4 class="font-display font-bold text-white text-sm uppercase tracking-wider mb-4">Redes Sociais Oficiais</h4>
+                    <div class="space-y-3">
+                        <a href="https://instagram.com/evertonbispooficial" target="_blank" rel="noopener noreferrer" class="flex items-center gap-3 p-3 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 transition-all group">
+                            <div class="w-8 h-8 rounded-lg bg-gradient-to-tr from-amber-500 via-pink-500 to-purple-600 flex items-center justify-center text-white">
+                                <i class="fa-brands fa-instagram"></i>
+                            </div>
+                            <div>
+                                <span class="block text-xs font-bold text-white group-hover:text-brand-gold transition-colors">@evertonbispooficial</span>
+                                <span class="text-[11px] text-slate-400">Perfil Oficial do Autor</span>
+                            </div>
+                        </a>
+
+                        <a href="https://instagram.com/universofit" target="_blank" rel="noopener noreferrer" class="flex items-center gap-3 p-3 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 transition-all group">
+                            <div class="w-8 h-8 rounded-lg bg-brand-emerald/20 text-brand-emerald flex items-center justify-center">
+                                <i class="fa-brands fa-instagram"></i>
+                            </div>
+                            <div>
+                                <span class="block text-xs font-bold text-white group-hover:text-brand-emerald transition-colors">@universofit</span>
+                                <span class="text-[11px] text-slate-400">Comunidade Fitness & Saúde</span>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Direitos Autorais e Aviso Legal -->
+            <div class="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500 text-center sm:text-left">
+                <p>&copy; 2026 Everton Bispo de Souza • A Magia da Transformação. Todos os direitos reservados.</p>
+                <p class="max-w-md">Aviso: Os e-books têm caráter educativo e informativo e não substituem acompanhamento médico ou nutricional individualizado.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ========================================== -->
+    <!-- BOTÃO FLUTUANTE WHATSAPP                   -->
+    <!-- ========================================== -->
+    <a href="https://wa.me/556798186877?text=Ol%C3%A1%20Everton!%20Vim%20pelo%20site%20A%20Magia%20da%20Transforma%C3%A7%C3%A3o%20e%20quero%20saber%20mais%20sobre%20os%20e-books." 
+       target="_blank" 
+       rel="noopener noreferrer"
+       aria-label="Atendimento via WhatsApp"
+       class="whatsapp-pulse fixed bottom-5 right-5 z-40 w-14 h-14 sm:w-16 sm:h-16 rounded-full bg-[#25D366] text-white flex items-center justify-center shadow-2xl hover:scale-110 transition-transform">
+        <i class="fa-brands fa-whatsapp text-3xl sm:text-4xl"></i>
+    </a>
+
+    <!-- ========================================== -->
+    <!-- MODAL DE CHECKOUT / COMPRA RÁPIDA          -->
+    <!-- ========================================== -->
+    <div id="checkout-modal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-black/80 backdrop-blur-sm">
+        <div class="bg-brand-moss border border-brand-gold/40 rounded-3xl max-w-lg w-full overflow-hidden shadow-2xl animate-[fadeIn_0.25s_ease-out]">
+            <!-- Cabeçalho Modal -->
+            <div class="px-6 py-4 bg-brand-dark border-b border-white/10 flex items-center justify-between">
+                <div class="flex items-center gap-2">
+                    <i class="fa-solid fa-lock text-brand-gold"></i>
+                    <span class="font-display font-bold text-white text-sm sm:text-base">Finalizar Pedido Seguro</span>
+                </div>
+                <button onclick="closeCheckoutModal()" aria-label="Fechar janela" class="text-slate-400 hover:text-white w-8 h-8 rounded-lg flex items-center justify-center hover:bg-white/10">
+                    <i class="fa-solid fa-xmark text-lg"></i>
+                </button>
+            </div>
+
+            <!-- Corpo do Modal -->
+            <div class="p-6 space-y-5">
+                <!-- Resumo do Produto -->
+                <div class="bg-brand-dark/80 border border-white/10 rounded-2xl p-4 flex items-center justify-between gap-4">
+                    <div>
+                        <span id="modal-product-tag" class="text-[10px] font-bold uppercase tracking-wider text-brand-emerald">E-book Digital</span>
+                        <h4 id="modal-product-title" class="font-display font-bold text-white text-sm sm:text-base leading-snug mt-0.5">Título do Produto</h4>
+                        <span class="text-xs text-slate-400 block mt-1"><i class="fa-solid fa-shield-halved text-brand-gold mr-1"></i>Garantia de 7 dias + Acesso Imediato</span>
+                    </div>
+                    <div class="text-right shrink-0">
+                        <span id="modal-product-old-price" class="text-xs text-slate-500 line-through block">R$ 67,00</span>
+                        <span id="modal-product-price" class="font-display font-extrabold text-xl sm:text-2xl text-brand-gold">R$ 39,70</span>
+                    </div>
+                </div>
+
+                <!-- Formulário Rápido -->
+                <div class="space-y-3">
+                    <div>
+                        <label for="buyer-name" class="block text-xs font-semibold text-slate-300 mb-1">Seu Nome Completo</label>
+                        <input type="text" id="buyer-name" placeholder="Ex: Maria Silva" class="w-full px-4 py-3 rounded-xl bg-brand-dark border border-white/15 text-white text-sm focus:outline-none focus:border-brand-gold">
+                    </div>
+                    <div>
+                        <label for="buyer-email" class="block text-xs font-semibold text-slate-300 mb-1">Seu Melhor E-mail (para receber o e-book)</label>
+                        <input type="email" id="buyer-email" placeholder="seuemail@exemplo.com" class="w-full px-4 py-3 rounded-xl bg-brand-dark border border-white/15 text-white text-sm focus:outline-none focus:border-brand-gold">
+                    </div>
+                </div>
+
+                <!-- Seleção de Forma de Pagamento -->
+                <div>
+                    <span class="block text-xs font-semibold text-slate-300 mb-2">Escolha a Forma de Pagamento</span>
+                    <div class="grid grid-cols-2 gap-3">
+                        <button type="button" onclick="selectPaymentMethod('pix')" id="pay-pix-btn" class="pay-method-btn active p-3 rounded-xl border-2 border-brand-emerald bg-brand-emerald/15 text-left transition-all">
+                            <div class="flex items-center justify-between mb-1">
+                                <i class="fa-brands fa-pix text-brand-emerald text-lg"></i>
+                                <span class="text-[10px] font-bold bg-brand-emerald text-brand-dark px-1.5 py-0.5 rounded">IMEDIATO</span>
+                            </div>
+                            <span class="block font-bold text-white text-xs sm:text-sm">Pix Copia e Cola</span>
+                            <span class="text-[11px] text-slate-300">Liberação em segundos</span>
+                        </button>
+
+                        <button type="button" onclick="selectPaymentMethod('card')" id="pay-card-btn" class="pay-method-btn p-3 rounded-xl border border-white/15 bg-brand-dark/60 text-left hover:border-white/30 transition-all">
+                            <div class="flex items-center justify-between mb-1">
+                                <i class="fa-regular fa-credit-card text-brand-gold text-lg"></i>
+                                <span class="text-[10px] font-bold text-slate-400">ATÉ 12X</span>
+                            </div>
+                            <span class="block font-bold text-white text-xs sm:text-sm">Cartão de Crédito</span>
+                            <span class="text-[11px] text-slate-400">Parcelamento facilitado</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Mensagem de feedback no modal (sem alert) -->
+                <div id="modal-feedback" class="hidden p-3.5 rounded-xl bg-brand-emerald/20 border border-brand-emerald text-xs text-white leading-relaxed"></div>
+
+                <!-- Botões de Finalização -->
+                <div class="space-y-2.5 pt-1">
+                    <button onclick="processQuickCheckout()" class="w-full gold-bg-gradient hover:brightness-110 text-brand-dark font-extrabold text-sm sm:text-base py-3.5 px-5 rounded-xl shadow-gold transition-all flex items-center justify-center gap-2">
+                        <i class="fa-solid fa-check-circle"></i>
+                        <span>GERAR ACESSO E PAGAMENTO</span>
+                    </button>
+
+                    <button onclick="finishViaWhatsApp()" class="w-full bg-[#25D366] hover:brightness-110 text-brand-dark font-extrabold text-xs sm:text-sm py-3 px-5 rounded-xl transition-all flex items-center justify-center gap-2">
+                        <i class="fa-brands fa-whatsapp text-base"></i>
+                        <span>FINALIZAR DIRETO NO WHATSAPP (67) 98186-877</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ========================================== -->
+    <!-- JAVASCRIPT: DADOS, INTERATIVIDADE E LÓGICA -->
+    <!-- ========================================== -->
+    <script>
+        // ==========================================
+        // 1. CATÁLOGO OFICIAL KIWIFY (PREÇOS & LINKS)
+        // ==========================================
+        // DICA PARA EVERTON: Para alterar ou adicionar qualquer link da Kiwify no futuro,
+        // basta editar o campo "checkoutUrl" de cada produto abaixo!
+        const KIWIFY_PRODUCTS = [
+            {
+                id: 'nutricao-sem-prisoes',
+                category: 'emagrecimento',
+                tag: 'Reeducação & Liberdade Alimentar',
+                title: 'A Magia da Transformação: Nutrição Sem Prisões',
+                subtitle: 'Domine a comida de verdade e conquiste liberdade alimentar com estratégias práticas e sustentáveis.',
+                oldPrice: 'R$ 97,00',
+                price: 'R$ 67,00',
+                installments: 'ou em até 12x na Kiwify',
+                checkoutUrl: 'https://pay.kiwify.com.br/8XAbJ3U',
+                benefits: [
+                    'Fim do efeito sanfona e das dietas restritivas',
+                    'Como montar pratos nutritivos com comida de verdade',
+                    'Liberdade para comer bem sem culpa e com prazer'
+                ],
+                coverStyle: {
+                    bg: 'linear-gradient(155deg, #3D523A 0%, #162617 100%)',
+                    accent: '#F59E0B',
+                    secondary: '#FDE68A',
+                    icon: 'fa-seedling',
+                    badgeText: 'LIBERDADE ALIMENTAR'
+                }
+            },
+            {
+                id: 'chas-dieta',
+                category: 'emagrecimento',
+                tag: 'Emagrecimento & Metabolismo',
+                title: 'A Magia da Transformação - Dieta (Chás e Estratégias)',
+                subtitle: 'O método científico com chás poderosos e estratégias reais para secar gordura e preservar massa magra.',
+                oldPrice: 'R$ 97,00',
+                price: 'R$ 67,00',
+                installments: 'ou em até 12x na Kiwify',
+                checkoutUrl: 'https://pay.kiwify.com.br/PC6NVko',
+                benefits: [
+                    'Chás naturais que aceleram o metabolismo',
+                    'Estratégias práticas para queimar gordura sem perder músculos',
+                    'Protocolo simples baseado em ciência e resultados reais'
+                ],
+                coverStyle: {
+                    bg: 'linear-gradient(155deg, #163A28 0%, #091B12 100%)',
+                    accent: '#84CC16',
+                    secondary: '#F97316',
+                    icon: 'fa-leaf',
+                    badgeText: 'SECAR GORDURA'
+                }
+            },
+            {
+                id: 'dieta-inteligente',
+                category: 'fitness',
+                tag: 'Receitas & Alimentação Inteligente',
+                title: 'A Magia da Transformação: Dieta Inteligente',
+                subtitle: 'Descubra como pequenas mudanças e receitas práticas levam a grandes conquistas na sua saúde e energia.',
+                oldPrice: 'R$ 97,00',
+                price: 'R$ 67,00',
+                installments: 'ou em até 12x na Kiwify',
+                checkoutUrl: 'https://pay.kiwify.com.br/6U7sTkb',
+                benefits: [
+                    'Receitas saborosas, rápidas e com ingredientes acessíveis',
+                    'Planejamento inteligente para manter o foco sem sofrimento',
+                    'Equilíbrio perfeito entre sabor, saciedade e nutrição'
+                ],
+                coverStyle: {
+                    bg: 'linear-gradient(155deg, #21373B 0%, #0E1A1D 100%)',
+                    accent: '#EAB308',
+                    secondary: '#FEF3C7',
+                    icon: 'fa-utensils',
+                    badgeText: 'DIETA INTELIGENTE'
+                }
+            },
+            {
+                id: '100-exercicios',
+                category: 'fitness',
+                tag: 'Exercícios Físicos & Condicionamento',
+                title: '100+ Exercícios: A Magia da Transformação',
+                subtitle: 'Treinos eficientes em casa para secar, definir o corpo e ganhar condicionamento físico sem academia.',
+                oldPrice: 'R$ 127,00',
+                price: 'R$ 97,00',
+                installments: 'ou em até 12x na Kiwify',
+                checkoutUrl: '', // Cole aqui o link da Kiwify deste produto quando desejar
+                benefits: [
+                    'Mais de 100 exercícios ilustrados e explicados passo a passo',
+                    'Rotinas curtas de alta queima calórica e definição muscular',
+                    'Progressão segura para iniciantes e intermediários'
+                ],
+                coverStyle: {
+                    bg: 'linear-gradient(155deg, #272B30 0%, #0F1114 100%)',
+                    accent: '#D4F82D',
+                    secondary: '#D4AF37',
+                    icon: 'fa-person-running',
+                    badgeText: '100+ EXERCÍCIOS'
+                }
+            },
+            {
+                id: 'tabagismo-liberdade',
+                category: 'mente',
+                tag: 'Guia Definitivo para Parar de Fumar',
+                title: 'Tabagismo: O Preço do Hábito e o Caminho para a Liberdade',
+                subtitle: 'Como o cigarro afeta sua vida e o passo a passo definitivo para abandonar o vício e respirar livre.',
+                oldPrice: 'R$ 67,00',
+                price: 'R$ 45,00',
+                installments: 'ou em até 10x na Kiwify',
+                checkoutUrl: '', // Cole aqui o link da Kiwify deste produto quando desejar
+                benefits: [
+                    'Identificação e neutralização dos gatilhos da vontade de fumar',
+                    'Plano prático para superar os primeiros dias de abstinência',
+                    'Recuperação da saúde pulmonar, energia e qualidade de vida'
+                ],
+                coverStyle: {
+                    bg: 'linear-gradient(155deg, #1E3A47 0%, #0A181F 100%)',
+                    accent: '#22D3EE',
+                    secondary: '#E2E8F0',
+                    icon: 'fa-dove',
+                    badgeText: 'LIVRE DO CIGARRO'
+                }
+            },
+            {
+                id: 'ansiedade-sob-controle',
+                category: 'mente',
+                tag: 'Saúde Emocional & Bem-estar',
+                title: 'Ansiedade Sob Controle',
+                subtitle: 'Técnicas práticas para acalmar a mente acelerada, reduzir o estresse diário e retomar o controle emocional.',
+                oldPrice: 'R$ 67,00',
+                price: 'R$ 45,00',
+                installments: 'ou em até 10x na Kiwify',
+                checkoutUrl: '', // Cole aqui o link da Kiwify deste produto quando desejar
+                benefits: [
+                    'Exercícios imediatos de respiração e aterramento mental',
+                    'Como quebrar ciclos de pensamentos negativos e preocupação',
+                    'Hábitos noturnos para melhorar o sono e acordar renovado'
+                ],
+                coverStyle: {
+                    bg: 'linear-gradient(155deg, #2D2247 0%, #120D1F 100%)',
+                    accent: '#C084FC',
+                    secondary: '#F3E8FF',
+                    icon: 'fa-brain',
+                    badgeText: 'MENTE CALMA'
+                }
+            }
+        ];
+
+        // Combos adicionais para o modal / WhatsApp
+        const KIWIFY_COMBOS = {
+            'combo': {
+                tag: 'MÉTODO 360° COMPLETO (TODOS OS GUIAS + BÔNUS)',
+                title: 'Método 360°: Leve o Método Completo',
+                oldPrice: 'R$ 388,00',
+                price: 'R$ 297,00',
+                checkoutUrl: 'https://kiwify.app/No1no7m'
+            },
+            'combo-respire': {
+                tag: 'COMBO MENTE & LIBERDADE',
+                title: 'Combo Respire Liberdade: Mente Calma',
+                oldPrice: 'R$ 90,00',
+                price: 'R$ 67,00',
+                checkoutUrl: ''
+            },
+            'combo-manual': {
+                tag: 'COMBO ESSENCIAL',
+                title: 'Combo Especial Manual "A Magia da Transformação"',
+                oldPrice: 'R$ 134,00',
+                price: 'R$ 97,00',
+                checkoutUrl: ''
+            },
+            'combo-corpo': {
+                tag: 'COMBO ESTÉTICA & TREINO',
+                title: 'Combo Corpo: A Magia da Transformação',
+                oldPrice: 'R$ 231,00',
+                price: 'R$ 197,00',
+                checkoutUrl: ''
+            }
+        };
+
+        // Renderizar Cards dos E-books com Botões Diretos para a Kiwify
+        function renderBooks(filter = 'all') {
+            const grid = document.getElementById('books-grid');
+            grid.innerHTML = '';
+
+            const filtered = filter === 'all' 
+                ? KIWIFY_PRODUCTS 
+                : KIWIFY_PRODUCTS.filter(book => book.category === filter);
+
+            filtered.forEach(book => {
+                const hasDirectLink = Boolean(book.checkoutUrl && book.checkoutUrl.trim() !== '');
+                const card = document.createElement('article');
+                card.className = 'book-card bg-brand-card border border-white/10 hover:border-brand-gold/50 rounded-3xl p-6 flex flex-col justify-between shadow-xl transition-all duration-300';
+                
+                const actionButtonHtml = hasDirectLink
+                    ? `<a href="${book.checkoutUrl}" target="_blank" rel="noopener noreferrer" class="w-full gold-bg-gradient hover:brightness-110 text-brand-dark font-extrabold text-xs sm:text-sm py-3.5 px-4 rounded-xl shadow-gold transition-all transform hover:-translate-y-0.5 flex items-center justify-center gap-2">
+                            <i class="fa-solid fa-lock"></i>
+                            <span>COMPRAR AGORA NA KIWIFY</span>
+                       </a>`
+                    : `<button onclick="openCheckoutModal('${book.id}')" class="w-full bg-white/10 hover:bg-brand-gold hover:text-brand-dark text-white font-bold text-xs sm:text-sm py-3.5 px-4 rounded-xl border border-brand-gold/40 transition-all flex items-center justify-center gap-2">
+                            <i class="fa-solid fa-cart-shopping"></i>
+                            <span>GARANTIR MEU E-BOOK</span>
+                       </button>`;
+
+                card.innerHTML = `
+                    <div>
+                        <!-- Categoria Tag + Selo Kiwify -->
+                        <div class="flex items-center justify-between gap-2 mb-4">
+                            <span class="text-[11px] font-bold uppercase tracking-wider px-3 py-1 rounded-full bg-white/5 text-brand-goldLight border border-white/10">
+                                ${book.tag}
+                            </span>
+                            ${hasDirectLink ? '<span class="text-[10px] font-bold text-brand-emerald flex items-center gap-1"><i class="fa-solid fa-circle-check"></i> Kiwify</span>' : ''}
+                        </div>
+
+                        <!-- Mockup 3D CSS/SVG Exclusivo -->
+                        <div class="book-3d-wrapper my-2">
+                            <div class="book-3d p-4 flex flex-col justify-between text-left border border-white/20" style="background: ${book.coverStyle.bg};">
+                                <div class="book-crease"></div>
+                                <div class="book-sheen"></div>
+                                
+                                <!-- Topo Capa -->
+                                <div class="pl-2 flex items-center justify-between">
+                                    <span class="text-[8px] font-extrabold tracking-widest uppercase px-1.5 py-0.5 rounded bg-black/40" style="color: ${book.coverStyle.accent};">
+                                        ${book.coverStyle.badgeText}
+                                    </span>
+                                    <i class="fa-solid ${book.coverStyle.icon} text-xs" style="color: ${book.coverStyle.accent};"></i>
+                                </div>
+
+                                <!-- Título Capa -->
+                                <div class="pl-2 my-auto">
+                                    <div class="text-[9px] uppercase tracking-wider text-white/70 font-semibold">Série Oficial</div>
+                                    <h4 class="font-display font-extrabold text-white text-xs leading-tight mt-0.5 line-clamp-4">
+                                        ${book.title}
+                                    </h4>
+                                    <div class="w-8 h-0.5 mt-2 rounded-full" style="background-color: ${book.coverStyle.accent};"></div>
+                                </div>
+
+                                <!-- Rodapé Capa -->
+                                <div class="pl-2 pt-2 border-t border-white/15 flex items-center justify-between">
+                                    <div>
+                                        <span class="block text-[9px] font-bold text-white leading-none">Everton Bispo</span>
+                                        <span class="text-[7px] text-white/60">de Souza</span>
+                                    </div>
+                                    <span class="text-[8px] font-extrabold px-1.5 py-0.5 rounded bg-white/10 text-white">EB</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Título e Subtítulo -->
+                        <h3 class="font-display font-bold text-lg text-white leading-snug mt-4 mb-2">
+                            ${book.title}
+                        </h3>
+                        <p class="text-xs sm:text-sm text-slate-300 leading-relaxed mb-4">
+                            ${book.subtitle}
+                        </p>
+
+                        <!-- Lista de Benefícios -->
+                        <ul class="space-y-2 text-xs text-slate-300 mb-6 border-t border-white/10 pt-4">
+                            ${book.benefits.map(b => `
+                                <li class="flex items-start gap-2">
+                                    <i class="fa-solid fa-check text-brand-emerald mt-0.5 shrink-0"></i>
+                                    <span>${b}</span>
+                                </li>
+                            `).join('')}
+                        </ul>
+                    </div>
+
+                    <!-- Preço e CTA -->
+                    <div class="pt-4 border-t border-white/10">
+                        <div class="flex items-baseline justify-between mb-3">
+                            <div>
+                                <span class="text-xs text-slate-400 line-through block">${book.oldPrice}</span>
+                                <span class="font-display font-extrabold text-2xl text-white">${book.price}</span>
+                            </div>
+                            <span class="text-xs text-brand-emerald font-medium">${book.installments}</span>
+                        </div>
+
+                        ${actionButtonHtml}
+                        <p class="text-center text-[10px] text-slate-400 mt-2">
+                            <i class="fa-solid fa-shield-halved text-brand-gold mr-1"></i> Garantia de 7 dias • Acesso imediato
+                        </p>
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+        }
+
+        // Função unificada para abrir link Kiwify ou Modal de Checkout
+        function openProductAction(productId) {
+            const combo = KIWIFY_COMBOS[productId];
+            if (combo && combo.checkoutUrl) {
+                window.open(combo.checkoutUrl, '_blank', 'noopener,noreferrer');
+                return;
+            }
+            const book = KIWIFY_PRODUCTS.find(b => b.id === productId);
+            if (book && book.checkoutUrl) {
+                window.open(book.checkoutUrl, '_blank', 'noopener,noreferrer');
+                return;
+            }
+            openCheckoutModal(productId);
+        }
+
+        // Eventos dos Filtros de Categoria
+        document.querySelectorAll('.filter-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('.filter-btn').forEach(b => {
+                    b.classList.remove('active', 'bg-brand-gold', 'text-brand-dark');
+                    b.classList.add('bg-white/5', 'text-slate-300');
+                });
+                btn.classList.add('active', 'bg-brand-gold', 'text-brand-dark');
+                btn.classList.remove('bg-white/5', 'text-slate-300');
+                renderBooks(btn.dataset.filter);
+            });
+        });
+
+        // ==========================================
+        // 2. QUIZ INTERATIVO DE DIAGNÓSTICO (3 PASSOS)
+        // ==========================================
+        const quizQuestions = [
+            {
+                question: 'Qual é o seu principal objetivo de transformação neste momento?',
+                options: [
+                    { label: 'Perder peso, secar gordura e acelerar o metabolismo', value: 'emagrecimento', icon: 'fa-fire' },
+                    { label: 'Treinar em casa para definir o corpo e ter mais energia', value: 'fitness', icon: 'fa-dumbbell' },
+                    { label: 'Controlar a ansiedade, estresse e ter paz mental', value: 'ansiedade', icon: 'fa-brain' },
+                    { label: 'Parar de fumar definitivamente e recuperar minha saúde', value: 'tabagismo', icon: 'fa-lungs' }
+                ]
+            },
+            {
+                question: 'Qual tem sido o maior obstáculo que te impede de avançar?',
+                options: [
+                    { label: 'Falta de um passo a passo prático e fácil de seguir', value: 'pratico', icon: 'fa-list-check' },
+                    { label: 'Dietas muito restritivas ou falta de receitas saborosas', value: 'alimentacao', icon: 'fa-utensils' },
+                    { label: 'Falta de tempo para ir à academia ou rotinas longas', value: 'tempo', icon: 'fa-clock' },
+                    { label: 'Gatilhos emocionais, ansiedade ou hábitos difíceis', value: 'emocional', icon: 'fa-heart-pulse' }
+                ]
+            },
+            {
+                question: 'Como você gostaria de iniciar sua mudança ainda hoje?',
+                options: [
+                    { label: 'Quero um guia específico focado no meu maior problema', value: 'unico', icon: 'fa-book-open' },
+                    { label: 'Quero transformação completa (Corpo, Alimentação e Mente)', value: 'combo', icon: 'fa-crown' }
+                ]
+            }
+        ];
+
+        let currentQuizStep = 0;
+        let quizAnswers = [];
+
+        function renderQuizStep() {
+            const container = document.getElementById('quiz-question-container');
+            const resultContainer = document.getElementById('quiz-result-container');
+            const stepLabel = document.getElementById('quiz-step-label');
+            const percentLabel = document.getElementById('quiz-percent-label');
+            const progressBar = document.getElementById('quiz-progress-bar');
+
+            resultContainer.classList.add('hidden');
+            container.classList.remove('hidden');
+
+            const stepNumber = currentQuizStep + 1;
+            const percent = Math.round((stepNumber / quizQuestions.length) * 100);
+
+            stepLabel.textContent = `Pergunta ${stepNumber} de ${quizQuestions.length}`;
+            percentLabel.textContent = `${percent}%`;
+            progressBar.style.width = `${percent}%`;
+
+            const q = quizQuestions[currentQuizStep];
+            container.innerHTML = `
+                <h3 class="font-display font-bold text-xl sm:text-2xl text-white mb-6">${q.question}</h3>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    ${q.options.map(opt => `
+                        <button onclick="handleQuizAnswer('${opt.value}')" class="p-4 sm:p-5 rounded-2xl bg-brand-dark/80 hover:bg-brand-moss border border-white/10 hover:border-brand-gold text-left flex items-center gap-4 transition-all group">
+                            <div class="w-11 h-11 rounded-xl bg-brand-gold/15 text-brand-gold group-hover:bg-brand-gold group-hover:text-brand-dark flex items-center justify-center shrink-0 transition-colors">
+                                <i class="fa-solid ${opt.icon} text-lg"></i>
+                            </div>
+                            <span class="font-semibold text-sm sm:text-base text-slate-200 group-hover:text-white">${opt.label}</span>
+                        </button>
+                    `).join('')}
+                </div>
+            `;
+        }
+
+        function handleQuizAnswer(val) {
+            quizAnswers[currentQuizStep] = val;
+            if (currentQuizStep < quizQuestions.length - 1) {
+                currentQuizStep++;
+                renderQuizStep();
+            } else {
+                showQuizResult();
+            }
+        }
+
+        function showQuizResult() {
+            const container = document.getElementById('quiz-question-container');
+            const resultContainer = document.getElementById('quiz-result-container');
+            const stepLabel = document.getElementById('quiz-step-label');
+            const percentLabel = document.getElementById('quiz-percent-label');
+            const progressBar = document.getElementById('quiz-progress-bar');
+
+            stepLabel.textContent = 'Diagnóstico Concluído!';
+            percentLabel.textContent = '100%';
+            progressBar.style.width = '100%';
+
+            container.classList.add('hidden');
+            resultContainer.classList.remove('hidden');
+
+            const [goal, obstacle, preference] = quizAnswers;
+            let recommendedId = 'combo';
+            let reason = 'Como você busca uma transformação completa e integrada, o Combo com todos os 6 e-books é a escolha mais inteligente e econômica.';
+
+            if (preference !== 'combo') {
+                if (goal === 'emagrecimento' && obstacle === 'alimentacao') {
+                    recommendedId = 'nutricao-sem-prisoes';
+                    reason = 'Você precisa emagrecer com liberdade, sem dietas malucas. Este guia vai te ensinar a dominar a comida de verdade.';
+                } else if (goal === 'emagrecimento') {
+                    recommendedId = 'chas-dieta';
+                    reason = 'Ideal para acelerar seu metabolismo com chás naturais e estratégias práticas para secar gordura preservando massa magra.';
+                } else if (goal === 'fitness' && obstacle === 'alimentacao') {
+                    recommendedId = 'dieta-inteligente';
+                    reason = 'Unir prática física com uma dieta inteligente e receitas práticas vai multiplicar seus resultados sem sofrimento na cozinha.';
+                } else if (goal === 'fitness') {
+                    recommendedId = '100-exercicios';
+                    reason = 'Perfeito para sua rotina! Mais de 100 exercícios eficientes para fazer em casa, secar e ganhar condicionamento sem depender de academia.';
+                } else if (goal === 'ansiedade') {
+                    recommendedId = 'ansiedade-sob-controle';
+                    reason = 'Focado em acalmar sua mente, controlar crises de ansiedade e devolver seu equilíbrio emocional no dia a dia.';
+                } else if (goal === 'tabagismo') {
+                    recommendedId = 'tabagismo-liberdade';
+                    reason = 'Um plano definitivo e acolhedor para vencer os gatilhos do cigarro e conquistar sua liberdade respiratória e financeira.';
+                }
+            }
+
+            const isCombo = recommendedId === 'combo';
+            const recProduct = isCombo ? KIWIFY_COMBOS['combo'] : KIWIFY_PRODUCTS.find(b => b.id === recommendedId);
+            const recTitle = recProduct.title;
+            const recPrice = recProduct.price;
+            const hasDirectUrl = Boolean(recProduct.checkoutUrl);
+
+            const recCtaHtml = hasDirectUrl
+                ? `<a href="${recProduct.checkoutUrl}" target="_blank" rel="noopener noreferrer" class="w-full sm:w-auto gold-bg-gradient hover:brightness-110 text-brand-dark font-extrabold text-sm px-7 py-3.5 rounded-xl shadow-gold transition-all flex items-center justify-center gap-2">
+                        <i class="fa-solid fa-lock"></i>
+                        <span>COMPRAR AGORA NA KIWIFY</span>
+                   </a>`
+                : `<button onclick="openCheckoutModal('${recommendedId}')" class="w-full sm:w-auto gold-bg-gradient hover:brightness-110 text-brand-dark font-extrabold text-sm px-7 py-3.5 rounded-xl shadow-gold transition-all flex items-center justify-center gap-2">
+                        <i class="fa-solid fa-bolt"></i>
+                        <span>Garantir Este Guia Agora</span>
+                   </button>`;
+
+            resultContainer.innerHTML = `
+                <div class="bg-brand-dark/90 border-2 border-brand-gold rounded-2xl p-6 sm:p-8 text-center">
+                    <span class="inline-block px-3 py-1 rounded-full bg-brand-emerald/20 text-brand-emerald text-xs font-bold uppercase mb-3">
+                        <i class="fa-solid fa-star mr-1"></i> Recomendação Personalizada
+                    </span>
+                    <h3 class="font-display font-extrabold text-xl sm:text-2xl text-white mb-2">${recTitle}</h3>
+                    <p class="text-sm text-slate-300 max-w-xl mx-auto mb-5">${reason}</p>
+                    
+                    <div class="text-brand-gold font-display font-extrabold text-2xl mb-6">${recPrice}</div>
+
+                    <div class="flex flex-col sm:flex-row items-center justify-center gap-3">
+                        ${recCtaHtml}
+                        <button onclick="resetQuiz()" class="w-full sm:w-auto px-5 py-3.5 rounded-xl bg-white/5 hover:bg-white/10 text-slate-300 text-xs font-semibold border border-white/10 transition-all">
+                            <i class="fa-solid fa-rotate-left mr-1"></i> Refazer Teste
+                        </button>
+                    </div>
+                </div>
+            `;
+        }
+
+        function resetQuiz() {
+            currentQuizStep = 0;
+            quizAnswers = [];
+            renderQuizStep();
+        }
+
+        // ==========================================
+        // 3. ENQUETES VOTÁVEIS EM TEMPO REAL
+        // ==========================================
+        const pollsState = {
+            poll1: {
+                voted: false,
+                selectedIdx: null,
+                total: 1428,
+                options: [
+                    { text: 'Secar gordura e emagrecer com saúde', votes: 614 },
+                    { text: 'Controlar a ansiedade e dormir melhor', votes: 371 },
+                    { text: 'Ter disciplina para treinar em casa', votes: 257 },
+                    { text: 'Parar de fumar definitivamente', votes: 186 }
+                ]
+            },
+            poll2: {
+                voted: false,
+                selectedIdx: null,
+                total: 984,
+                options: [
+                    { text: 'Sim, várias vezes e acabei recuperando o peso', votes: 669 },
+                    { text: 'Sim, acho muito difícil manter a rotina', votes: 226 },
+                    { text: 'Ainda não, quero começar do jeito certo agora', votes: 89 }
+                ]
+            },
+            poll3: {
+                voted: false,
+                selectedIdx: null,
+                total: 1156,
+                options: [
+                    { text: 'Lendo guias diretos no celular e aplicando aos poucos', votes: 682 },
+                    { text: 'Seguindo receitas práticas e treinos curtos em casa', votes: 347 },
+                    { text: 'Com apoio de comunidade e grupos no WhatsApp', votes: 127 }
+                ]
+            }
+        };
+
+        function renderPolls() {
+            Object.keys(pollsState).forEach(pollId => {
+                const poll = pollsState[pollId];
+                const card = document.querySelector(`[data-poll-id="${pollId}"]`);
+                if (!card) return;
+
+                const optionsContainer = card.querySelector('.poll-options');
+                const totalEl = card.querySelector('.poll-total');
+                const badgeEl = card.querySelector('.poll-voted-badge');
+
+                totalEl.textContent = `${poll.total.toLocaleString('pt-BR')} votos registrados`;
+                if (poll.voted) badgeEl.classList.remove('hidden');
+
+                optionsContainer.innerHTML = poll.options.map((opt, idx) => {
+                    const pct = Math.round((opt.votes / poll.total) * 100);
+                    const isSelected = poll.selectedIdx === idx;
+
+                    return `
+                        <button onclick="votePoll('${pollId}', ${idx})" class="w-full relative overflow-hidden rounded-xl border ${isSelected ? 'border-brand-emerald bg-brand-emerald/10' : 'border-white/10 bg-brand-dark/70 hover:border-brand-gold/50'} p-3 text-left transition-all">
+                            ${poll.voted ? `<div class="absolute inset-y-0 left-0 ${isSelected ? 'bg-brand-emerald/25' : 'bg-white/10'} transition-all duration-700" style="width: ${pct}%;"></div>` : ''}
+                            <div class="relative z-10 flex items-center justify-between gap-3 text-xs sm:text-sm">
+                                <span class="font-medium ${isSelected ? 'text-white font-bold' : 'text-slate-200'}">
+                                    ${isSelected ? '<i class="fa-solid fa-circle-check text-brand-emerald mr-1.5"></i>' : ''}${opt.text}
+                                </span>
+                                ${poll.voted ? `<span class="font-display font-bold text-brand-gold shrink-0">${pct}%</span>` : '<span class="text-[11px] text-slate-400 shrink-0">Votar</span>'}
+                            </div>
+                        </button>
+                    `;
+                }).join('');
+            });
+        }
+
+        function votePoll(pollId, optionIndex) {
+            const poll = pollsState[pollId];
+            if (!poll.voted) {
+                poll.voted = true;
+                poll.selectedIdx = optionIndex;
+                poll.options[optionIndex].votes += 1;
+                poll.total += 1;
+            } else if (poll.selectedIdx !== optionIndex) {
+                // Permite trocar o voto
+                poll.options[poll.selectedIdx].votes -= 1;
+                poll.selectedIdx = optionIndex;
+                poll.options[optionIndex].votes += 1;
+            }
+            renderPolls();
+        }
+
+        // ==========================================
+        // 4. ACORDEÃO FAQ & MENU MOBILE
+        // ==========================================
+        document.querySelectorAll('.faq-trigger').forEach(trigger => {
+            trigger.addEventListener('click', () => {
+                const item = trigger.closest('.faq-item');
+                const content = item.querySelector('.faq-content');
+                const icon = trigger.querySelector('i');
+                const isOpen = !content.classList.contains('hidden');
+
+                // Fecha os demais itens
+                document.querySelectorAll('.faq-content').forEach(c => c.classList.add('hidden'));
+                document.querySelectorAll('.faq-trigger i').forEach(i => i.style.transform = 'rotate(0deg)');
+
+                if (!isOpen) {
+                    content.classList.remove('hidden');
+                    icon.style.transform = 'rotate(180deg)';
+                }
+            });
+        });
+
+        // Menu Mobile Toggle
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+        document.querySelectorAll('.mobile-link').forEach(link => {
+            link.addEventListener('click', () => mobileMenu.classList.add('hidden'));
+        });
+
+        // ==========================================
+        // 5. MODAL DE CHECKOUT & INTEGRAÇÃO WHATSAPP
+        // ==========================================
+        let selectedProduct = null;
+        let selectedPayment = 'pix';
+
+        function openCheckoutModal(productId) {
+            const modal = document.getElementById('checkout-modal');
+            const feedback = document.getElementById('modal-feedback');
+            feedback.classList.add('hidden');
+
+            if (KIWIFY_COMBOS[productId]) {
+                selectedProduct = KIWIFY_COMBOS[productId];
+            } else {
+                const book = KIWIFY_PRODUCTS.find(b => b.id === productId);
+                selectedProduct = {
+                    tag: book.tag,
+                    title: book.title,
+                    oldPrice: book.oldPrice,
+                    price: book.price
+                };
+            }
+
+            document.getElementById('modal-product-tag').textContent = selectedProduct.tag;
+            document.getElementById('modal-product-title').textContent = selectedProduct.title;
+            document.getElementById('modal-product-old-price').textContent = selectedProduct.oldPrice;
+            document.getElementById('modal-product-price').textContent = selectedProduct.price;
+
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+        }
+
+        function closeCheckoutModal() {
+            const modal = document.getElementById('checkout-modal');
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+        }
+
+        function selectPaymentMethod(method) {
+            selectedPayment = method;
+            const pixBtn = document.getElementById('pay-pix-btn');
+            const cardBtn = document.getElementById('pay-card-btn');
+
+            if (method === 'pix') {
+                pixBtn.className = 'pay-method-btn active p-3 rounded-xl border-2 border-brand-emerald bg-brand-emerald/15 text-left transition-all';
+                cardBtn.className = 'pay-method-btn p-3 rounded-xl border border-white/15 bg-brand-dark/60 text-left hover:border-white/30 transition-all';
+            } else {
+                cardBtn.className = 'pay-method-btn active p-3 rounded-xl border-2 border-brand-gold bg-brand-gold/15 text-left transition-all';
+                pixBtn.className = 'pay-method-btn p-3 rounded-xl border border-white/15 bg-brand-dark/60 text-left hover:border-white/30 transition-all';
+            }
+        }
+
+        function processQuickCheckout() {
+            const name = document.getElementById('buyer-name').value.trim();
+            const email = document.getElementById('buyer-email').value.trim();
+            const feedback = document.getElementById('modal-feedback');
+
+            if (!name || !email) {
+                feedback.className = 'p-3.5 rounded-xl bg-amber-500/20 border border-amber-400 text-xs text-amber-200 leading-relaxed';
+                feedback.innerHTML = '<i class="fa-solid fa-triangle-exclamation mr-1"></i> Por favor, preencha seu <strong>nome</strong> e <strong>e-mail</strong> acima para gerar o acesso ao e-book.';
+                feedback.classList.remove('hidden');
+                return;
+            }
+
+            const payLabel = selectedPayment === 'pix' ? 'Pix Instantâneo' : 'Cartão de Crédito';
+            feedback.className = 'p-4 rounded-xl bg-brand-emerald/20 border border-brand-emerald text-xs text-white leading-relaxed';
+            feedback.innerHTML = `
+                <div class="font-bold text-brand-emerald mb-1"><i class="fa-solid fa-circle-check mr-1"></i> Pedido Pré-Reservado com Sucesso!</div>
+                Olá <strong>${name}</strong>! Preparamos o envio de <strong>${selectedProduct.title}</strong> (${selectedProduct.price} via ${payLabel}) para <strong>${email}</strong>.<br>
+                Clique no botão verde abaixo para concluir o pagamento e receber seu arquivo imediatamente no WhatsApp!
+            `;
+            feedback.classList.remove('hidden');
+        }
+
+        function finishViaWhatsApp() {
+            const name = document.getElementById('buyer-name').value.trim() || 'Visitante do Site';
+            const email = document.getElementById('buyer-email').value.trim();
+            const payLabel = selectedPayment === 'pix' ? 'Pix' : 'Cartão de Crédito';
+
+            let msg = `Olá Everton! Quero adquirir o material:\n`;
+            msg += `📘 *Produto:* ${selectedProduct.title}\n`;
+            msg += `💰 *Valor:* ${selectedProduct.price}\n`;
+            msg += `💳 *Forma de Pagamento:* ${payLabel}\n`;
+            msg += `👤 *Nome:* ${name}`;
+            if (email) msg += `\n📧 *E-mail:* ${email}`;
+
+            const waUrl = `https://wa.me/556798186877?text=${encodeURIComponent(msg)}`;
+            window.open(waUrl, '_blank', 'noopener,noreferrer');
+        }
+
+        // Fechar modal ao clicar fora
+        document.getElementById('checkout-modal').addEventListener('click', (e) => {
+            if (e.target.id === 'checkout-modal') closeCheckoutModal();
+        });
+
+        // ==========================================
+        // 6. ANIMAÇÕES DE SCROLL (INTERSECTION OBSERVER)
+        // ==========================================
+        function initScrollReveal() {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('active');
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+        }
+
+        // Inicialização
+        window.addEventListener('DOMContentLoaded', () => {
+            renderBooks('all');
+            renderQuizStep();
+            renderPolls();
+            initScrollReveal();
+        });
+    </script>
+</body>
+</html>
